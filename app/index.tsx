@@ -1,8 +1,7 @@
 import LeaveAReviewButton from "@/components/leave-a-review-button";
 import ShareAppButton from "@/components/share-app-button";
 import StartTellingButton from "@/components/start-telling-button";
-import { Image, Text, View, TouchableOpacity } from "react-native";
-import Svg, { G, Path } from "react-native-svg";
+import { Image, View } from "react-native";
 
 export default function Index() {
   return (
