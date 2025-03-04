@@ -1,14 +1,32 @@
 import { useLocalSearchParams } from "expo-router";
-import { Image, Pressable, ScrollView, Text } from "react-native";
+import { BackHandler, Image, Pressable, ScrollView, Text } from "react-native";
 import stories from "@/assets/story.json";
 import Svg, { Path, G } from "react-native-svg";
 import * as Speech from "expo-speech";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Index() {
   const { id } = useLocalSearchParams();
   const selectedStory = stories.Data.filter((story) => story.id === id)[0];
   const [play, setPlay] = useState(false);
+
+  useEffect(() => {
+    const backAction = () => {
+      if (play) {
+        Speech.stop();
+        setPlay(false);
+        return true;
+      }
+    };
+
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
+      setPlay(false);
+      Speech.stop(); 
+    };
+  }, []);
 
   return (
     <ScrollView>
