@@ -1,10 +1,11 @@
+import { router } from "expo-router";
 import { TouchableOpacity, Text } from "react-native";
 import Svg, { G, Path } from "react-native-svg";
 
 export default function StartTellingButton() {
   return (
     <TouchableOpacity
-      onPress={() => alert("Hello, World!")}
+      onPress={() => router.push("/story")}
       style={{
         backgroundColor: "#277da1",
         padding: 10,
