@@ -22,7 +22,6 @@ export default function Index() {
     BackHandler.addEventListener("hardwareBackPress", backAction);
 
     return () => {
-      BackHandler.removeEventListener("hardwareBackPress", backAction);
       setPlay(false);
       Speech.stop(); 
     };
@@ -38,6 +37,7 @@ export default function Index() {
         onPress={() => {
           if (!play) {
             Speech.speak(selectedStory.story_text);
+            console.log(selectedStory.story_text);
             setPlay(true);
           } else {
             Speech.stop();
